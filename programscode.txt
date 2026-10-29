@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>All Programs - ServeKind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="stylesheet" href="style.css"> 
+<script>tailwind.config = {theme: {extend: {colors: {primary: '#FF6B35',secondary: '#4A90E2' }, borderRadius: {'button': '8px' }}}};</script>
+</head>
+<body class="bg-gray-50">
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary mr-10">ServeKind</a>
+<nav class="hidden md:flex space-x-6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=home.php class="text-gray-800 hover:text-primary font-medium">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<a href="#" class="text-gray-800 hover:text-primary font-medium">Programs</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=donate.php class="text-gray-800 hover:text-primary font-medium">Donate</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+<a href=volunteer.php class="text-gray-800 hover:text-primary font-medium">Volunteer</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=blog.php class="text-gray-800 hover:text-primary font-medium">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=aboutus.php class="text-gray-800 hover:text-primary font-medium">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=contactus.php class="text-gray-800 hover:text-primary font-medium">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</nav>
+</div>
+</div>
+</header>
+
+<div class="container mx-auto px-4 py-8">
+<div class="flex items-center mb-8">
+<a href="#" class="flex items-center text-gray-600 hover:text-primary">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+</div>
+</a>
+</div>
+
+<h1 class="text-3xl font-bold mb-8">All Programs</h1>
+
+<div class="flex flex-col lg:flex-row gap-8 mb-8">
+<!--FILTERS SIDEBAR-->
+<div class="lg:w-1/4">
+<div class="bg-white rounded-lg shadow-sm p-6">
+<div class="relative mb-6">
+<div class="w-5 h-5 flex items-center justify-center absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+<i class="ri-search-line"></i>
+</div>
+<input id="searchInput" type="text" placeholder="Search programs..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+</div>
+
+<div class="space-y-6">
+<div>
+<h3 class="font-medium mb-3">Categories</h3>
+<div class="space-y-2">
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Food Distribution"><span class="ml-2 text-gray-700">Food Distribution</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Education"><span class="ml-2 text-gray-700">Education</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Community Gardens"><span class="ml-2 text-gray-700">Community Gardens</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Senior Care"><span class="ml-2 text-gray-700">Senior Care</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Family Support"><span class="ml-2 text-gray-700">Family Support</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="category" value="Child Welfare"><span class="ml-2 text-gray-700">Child Welfare</span></label>
+</div>
+</div>
+
+<div>
+<h3 class="font-medium mb-3">Location</h3>
+<div class="space-y-2">
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Delhi NCR"><span class="ml-2 text-gray-700">Delhi NCR</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Mumbai"><span class="ml-2 text-gray-700">Mumbai</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Bangalore"><span class="ml-2 text-gray-700">Bangalore</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Chennai"><span class="ml-2 text-gray-700">Chennai</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Ahmedabad"><span class="ml-2 text-gray-700">Ahmedabad</span></label>
+<label class="flex items-center"><input type="checkbox" class="custom-checkbox filter-checkbox" data-filter="location" value="Kolkata"><span class="ml-2 text-gray-700">Kolkata</span></label>
+</div>
+</div>
+
+<button id="clear-filters" class="w-full mt-4 bg-gray-100 text-gray-600 hover:bg-gray-200 transition duration-300 px-4 py-2 rounded-button whitespace-nowrap text-sm">Clear Filters</button>
+</div>
+</div>
+</div>
+
+<!-- PROGRAM CARDS-->
+<div class="lg:w-3/4">
+<div id="programGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <!-- Programs -->
+  <div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+       data-category="Food Distribution" data-location="Delhi NCR" data-title="Daily Meal Program">
+    <img src="program1.jpg" 
+         alt="Daily Meal Program" class="w-full h-48 object-cover object-top">
+    <div class="p-6">
+      <div class="flex flex-wrap gap-2 mb-3">
+        <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Food Distribution</span>
+        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Delhi NCR</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Daily Meal Program</h3>
+      <p class="text-gray-600 mb-4">
+        Providing nutritious meals to homeless and underprivileged communities across urban centers.
+      </p>
+      <div class="space-y-3 mb-4">
+        <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Monday to Saturday, 11 AM - 2 PM</div>
+        <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>15 locations across Delhi NCR</div>
+        <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>50+ volunteers needed daily</div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center text-gray-600"><i class="ri-heart-line mr-1"></i>2,000+ meals daily</div>
+        <button onclick="window.location.href='volunteer.php'" 
+                class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+          Volunteer Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+       data-category="Community Gardens" data-location="Mumbai" data-title="Urban Farming Initiative">
+    <img src="story6.jpg" 
+         alt="Urban Farming Initiative" class="w-full h-48 object-cover object-top">
+    <div class="p-6">
+      <div class="flex flex-wrap gap-2 mb-3">
+        <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Community Gardens</span>
+        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Mumbai</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Urban Farming Initiative</h3>
+      <p class="text-gray-600 mb-4">
+        Creating sustainable food sources through community gardens and education in urban areas.
+      </p>
+      <div class="space-y-3 mb-4">
+        <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Weekly workshops, flexible hours</div>
+        <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>8 community gardens in Mumbai</div>
+        <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>30 volunteers needed</div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center text-gray-600"><i class="ri-plant-line mr-1"></i>500+ families benefited</div>
+        <button onclick="window.location.href='volunteer.php'" class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+          Volunteer Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+       data-category="Education" data-location="Bangalore" data-title="Nutrition Education Program">
+    <img src="program3.jpg" 
+         alt="Nutrition Education Program" class="w-full h-48 object-cover object-top">
+    <div class="p-6">
+      <div class="flex flex-wrap gap-2 mb-3">
+        <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Education</span>
+        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Bangalore</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Nutrition Education Program</h3>
+      <p class="text-gray-600 mb-4">Teaching healthy cooking and eating habits to improve community health outcomes.</p>
+      <div class="space-y-3 mb-4">
+        <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Weekend workshops, 10 AM - 1 PM</div>
+        <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>12 community centers</div>
+        <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>20 nutrition educators needed</div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center text-gray-600"><i class="ri-book-open-line mr-1"></i>1,000+ participants</div>
+        <button onclick="window.location.href='volunteer.php'"class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+          Volunteer Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+       data-category="Senior Care" data-location="Chennai" data-title="Senior Nutrition Program">
+    <img src="program6.jpg" 
+         alt="Senior Nutrition Program" class="w-full h-48 object-cover object-top">
+    <div class="p-6">
+      <div class="flex flex-wrap gap-2 mb-3">
+        <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Senior Care</span>
+        <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Chennai</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Senior Nutrition Program</h3>
+      <p class="text-gray-600 mb-4">Providing nutritious meals and companionship to elderly community members.</p>
+      <div class="space-y-3 mb-4">
+        <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Daily, 9 AM - 11 AM</div>
+        <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>6 senior centers</div>
+        <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>25 volunteers needed</div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center text-gray-600"><i class="ri-heart-line mr-1"></i>300+ seniors served</div>
+        <button onclick="window.location.href='volunteer.php'" class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+          Volunteer Now</button>
+      </div>
+    </div>
+  </div>
+
+<div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+     data-category="Family Support" data-location="Ahmedabad" data-title="Community Grocery Support">
+  <img src="program5.jpg" alt="Community Grocery Support" class="w-full h-48 object-cover object-top">
+  <div class="p-6">
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Family Support</span>
+      <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Ahmedabad</span>
+    </div>
+    <h3 class="text-xl font-bold mb-2">Community Grocery Support</h3>
+    <p class="text-gray-600 mb-4">
+      Weekly distribution of essential groceries to low-income families, ensuring food security and dignity.
+    </p>
+    <div class="space-y-3 mb-4">
+      <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Every Saturday, 10 AM - 1 PM</div>
+      <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>5 urban and rural distribution centers</div>
+      <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>40 volunteers needed</div>
+    </div>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center text-gray-600"><i class="ri-heart-line mr-1"></i>500+ families supported</div>
+      <button onclick="window.location.href='volunteer.php'" class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+        Volunteer Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="program-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition duration-300"
+     data-category="Child Welfare" data-location="Kolkata" data-title="Midday Meal for Children">
+  <img src="program4.jpg"
+       alt="Midday Meal for Children" class="w-full h-48 object-cover object-top">
+  <div class="p-6">
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Child Welfare</span>
+      <span class="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Kolkata</span>
+    </div>
+    <h3 class="text-xl font-bold mb-2">Midday Meal for Children</h3>
+    <p class="text-gray-600 mb-4">
+      Serving nutritious school lunches to children in underserved schools to support their growth and learning.
+    </p>
+    <div class="space-y-3 mb-4">
+      <div class="flex items-center text-gray-600"><i class="ri-calendar-line mr-2"></i>Monday to Friday, 12 PM - 1 PM</div>
+      <div class="flex items-center text-gray-600"><i class="ri-map-pin-line mr-2"></i>10 government schools</div>
+      <div class="flex items-center text-gray-600"><i class="ri-team-line mr-2"></i>50 volunteers needed</div>
+    </div>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center text-gray-600"><i class="ri-heart-line mr-1"></i>1200+ children fed daily</div>
+      <button onclick="window.location.href='volunteer.php'" 
+              class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+        Volunteer Now
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- NO RESULT FOUND MESSAGE -->
+<p id="noResult" class="hidden text-center text-gray-600 mt-6">No Programs Found</p>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+// FILTER & SEARCH SCRIPT WITH "NO RESULT FOUND"
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const checkboxes = document.querySelectorAll(".filter-checkbox");
+  const clearBtn = document.getElementById("clear-filters");
+  const cards = document.querySelectorAll(".program-card");
+  const noResult = document.getElementById("noResult");
+
+  function filterPrograms() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedCategories = [...checkboxes].filter(cb => cb.checked && cb.dataset.filter === "category").map(cb => cb.value);
+    const selectedLocations = [...checkboxes].filter(cb => cb.checked && cb.dataset.filter === "location").map(cb => cb.value);
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      const category = card.dataset.category;
+      const location = card.dataset.location;
+
+      const matchesSearch = title.includes(searchText);
+      const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
+      const matchesLocation = selectedLocations.length === 0 || selectedLocations.includes(location);
+
+      if (matchesSearch && matchesCategory && matchesLocation) {
+        card.style.display = "block";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    noResult.classList.toggle("hidden", visibleCount > 0);
+  }
+
+  searchInput.addEventListener("input", filterPrograms);
+  checkboxes.forEach(cb => cb.addEventListener("change", filterPrograms));
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    checkboxes.forEach(cb => cb.checked = false);
+    filterPrograms();
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+-- 1. Create the Database
+CREATE DATABASE IF NOT EXISTS webdata;
+USE webdata;
+
+
+--2 .CREATE TABLE IF NOT EXISTS users (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    -- Password needs to be long enough for PHP's password_hash() output (e.g., 255 chars)
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- 3. Table for Volunteer Applications (Matches volunteer_process.php)
+CREATE TABLE IF NOT EXISTS volunteer_registrations (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) DEFAULT 0,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    areas_of_interest TEXT,
+    availability TEXT,
+    message TEXT,
+    agreed_terms TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+
+-- 4. Table for Money Donations (Matches donate_process.php)
+CREATE TABLE IF NOT EXISTS monetary_donations (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) DEFAULT 0,
+    amount DECIMAL(10, 2) NOT NULL,
+    payment_method VARCHAR(50),
+    tax_receipt TINYINT(1) DEFAULT 0,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    transaction_id VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+
+-- 5. Table for Food Donations (Matches food_donate_process.php)
+CREATE TABLE IF NOT EXISTS food_donations (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) DEFAULT 0,
+    donation_type VARCHAR(50),
+    donation_details TEXT,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255),
+    city VARCHAR(100) NOT NULL,
+    pincode VARCHAR(20) NOT NULL,
+    pickup_date DATE NOT NULL,
+    pickup_time TIME NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    food_safety TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- 6. CREATE TABLE `contact_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `emailaddress` varchar(255) NOT NULL,
+  `phonenumber` varchar(15) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- 7. Programs Table (for Add/Update/Delete Programs)
+CREATE TABLE IF NOT EXISTS programs (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image_url VARCHAR(255) NOT NULL, -- Path to the image file
+    category VARCHAR(100),
+    location VARCHAR(100),
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 8. Content Table (for Blogs and Stories)
+-- We will use one table for both blogs and stories and differentiate them by a 'type' column
+CREATE TABLE IF NOT EXISTS content (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('blog', 'story') NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content_text TEXT NOT NULL,
+    image_url VARCHAR(255),
+    author_id INT(11), -- Can link back to users table if needed
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+
+
+-- 1. Volunteer Registrations: Add 'status' column (pending, approved, rejected)
+ALTER TABLE volunteer_registrations
+ADD COLUMN status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending' AFTER user_id;
+
+-- 2. Food Donations: Add 'status' column (scheduled, completed, cancelled)
+ALTER TABLE food_donations
+ADD COLUMN status ENUM('scheduled', 'completed', 'cancelled') DEFAULT 'scheduled' AFTER user_id;
+
+-- 3. Contact Messages: Add 'status' and 'admin_reply' columns
+ALTER TABLE contact_messages
+ADD COLUMN status ENUM('unread', 'replied') DEFAULT 'unread' AFTER phonenumber,
+ADD COLUMN admin_reply TEXT NULL AFTER status,
+ADD COLUMN replied_at TIMESTAMP NULL AFTER admin_reply;

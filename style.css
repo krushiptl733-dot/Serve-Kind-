@@ -1,0 +1,397 @@
+:where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+            z-index: 5;
+        }
+        
+        .counter-value {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .custom-checkbox:checked {
+            background-color: #FF6B35;
+            border-color: #FF6B35;
+        }
+        
+        .custom-checkbox:checked::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .custom-radio {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .custom-radio:checked {
+            border-color: #FF6B35;
+        }
+        
+        .custom-radio:checked::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #FF6B35;
+        }
+        
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #FF6B35;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+        
+        .amount-option:checked + label {
+            background-color: #FF6B35;
+            color: white;
+            border-color: #FF6B35;
+        }
+        
+        .tab-button.active {
+            background-color: #FF6B35;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .blog-tab-button.active {
+            color: #FF6B35;
+            border-bottom: 2px solid #FF6B35;
+        }
+        
+        .blog-tab-content {
+            display: none;
+        }
+        
+        .blog-tab-content.active {
+            display: grid;
+        }
+         .slide-in-impact {
+                opacity: 0;
+                transform: translateX(-60px);
+                transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+            }
+            .slide-in-impact.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+                        /* --------------about us------------- */
+        /* Common Section Styles */
+.about-servekind, .what-we-do, .how-you-can-help, .stories-of-hope, .upcoming-events {
+    padding: 60px 10%;
+    background: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.about-servekind .container,
+.what-we-do .container,
+.how-you-can-help .container,
+.stories-of-hope .container,
+.upcoming-events .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-servekind .content,
+.what-we-do .content,
+.how-you-can-help .content,
+.stories-of-hope .content,
+.upcoming-events .content {
+    flex: 1;
+}
+
+.about-servekind .image img,
+.what-we-do .image img,
+.how-you-can-help .image img,
+.stories-of-hope .image img,
+.upcoming-events .image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Headings and Paragraphs */
+.about-servekind h2, .what-we-do h2, .how-you-can-help h2, 
+.stories-of-hope h2, .upcoming-events h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.about-servekind p, .what-we-do p, .how-you-can-help p, .stories-of-hope p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.upcoming-events ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.upcoming-events li {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #f97316;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ea580c;
+}
+
+/* Reverse layout */
+.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-servekind .container,
+    .what-we-do .container,
+    .how-you-can-help .container,
+    .stories-of-hope .container,
+    .upcoming-events .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .reverse {
+        flex-direction: column;
+    }
+    .about-servekind .image img,
+    .what-we-do .image img,
+    .how-you-can-help .image img,
+    .stories-of-hope .image img,
+    .upcoming-events .image img {
+        max-width: 100%;
+    }
+}
+/* volunteer */
+
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf5;
+      color: #333;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    .hero {
+      background: linear-gradient(to right, #f19838, #fff0e6);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #d35400;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #171818;
+      max-width: 700px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #e67e22;;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    ul {
+      list-style: disc inside;
+    }
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .cta a {
+      display: inline-block;
+      background-color: #e67e22;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #cf711f;
+    }
+    
+    /* Glassmorphism effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* Fade-in effect */
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blog ServeKind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#FF6B35',secondary:'#4A90E2'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+     <link rel="stylesheet" href="style.css"> 
+     <style>
+        /* Glassmorphism effect (copied from home.php) */
+        .glass {
+            background: rgba(255,255,255,0.25);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(98, 105, 201, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.42);
+        }
+
+        /* Fade-in animation for sections (copied from home.php) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Modal popups smooth scale (kept for consistency if modals are added) */
+        .modal-animate {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+        }
+        .modal-animate.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary mr-10">ServeKind</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <nav class="hidden md:flex space-x-6">
+                    <a href=home.php class="text-gray-800 hover:text-primary font-medium">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    <a href=programs.php class="text-gray-800 hover:text-primary font-medium">Programs</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href=donate.php class="text-gray-800 hover:text-primary font-medium">Donate</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href=volunteer.php class="text-gray-800 hover:text-primary font-medium">Volunteer</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-gray-800 hover:text-primary font-medium">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href=aboutus.php class="text-gray-800 hover:text-primary font-medium">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href=contactus.php class="text-gray-800 hover:text-primary font-medium">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </nav>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog & Stories -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Blog & Stories</h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-8">Read about our impact, volunteer experiences, and food security insights.</p>
+            
+            <div id="stories-tab" class="blog-tab-content active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story1.jpg" alt="Village Transformation" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Community Impact</span>
+                            <span class="text-gray-500 text-sm ml-auto">July 2, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">How Nutrition Programs Transformed Rajasthan Village</h3>
+                        <p class="text-gray-600 mb-4">The story of how our sustainable food programs helped a drought-affected village become self-sufficient...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story2.jpg" alt="Elderly Care" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Senior Care</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 25, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Bringing Meals and Companionship to Elderly in Mumbai</h3>
+                        <p class="text-gray-600 mb-4">How our senior meal delivery program is addressing both nutrition and loneliness among elderly residents...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story3.jpg" alt="School Meals" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Education</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 18, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">School Attendance Rises 40% After Meal Program Implementation</h3>
+                        <p class="text-gray-600 mb-4">The remarkable impact of providing nutritious daily meals to students in rural Karnataka schools...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="volunteer-tab" class="blog-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story4.jpg" alt="Cooking Classes" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Volunteer Story</span>
+                            <span class="text-gray-500 text-sm ml-auto">July 5, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">From Corporate Chef to Community Teacher: Vikram's Journey</h3>
+                        <p class="text-gray-600 mb-4">How a professional chef found purpose teaching cooking skills to underprivileged children...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story5.jpg" alt="College Volunteers" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Youth Impact</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 28, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Delhi University Students Lead Weekend Food Drives</h3>
+                        <p class="text-gray-600 mb-4">How a group of college students organized to serve over 10,000 meals during their academic year...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="story6.jpg" alt="Retired Volunteers" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Senior Volunteers</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 20, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Retirement Reimagined: The Sharmas' Second Career in Service</h3>
+                        <p class="text-gray-600 mb-4">How a retired couple found new purpose managing our community garden program in Pune...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+           
+            <div id="insights-tab" class="blog-tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="security1.jpg" alt="Urban Farming" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Innovation</span>
+                            <span class="text-gray-500 text-sm ml-auto">July 7, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Urban Farming: The Future of Food Security in Indian Cities</h3>
+                        <p class="text-gray-600 mb-4">Exploring how rooftop and vertical gardens are creating sustainable food sources in urban areas...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="security2.jpg" alt="Food Preservation" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Education</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 30, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Traditional Meets Modern: Food Preservation Techniques</h3>
+                        <p class="text-gray-600 mb-4">How combining ancestral knowledge with modern methods is reducing food waste in communities...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="security3.jpg" alt="Policy Discussion" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-xs font-medium bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full">Policy</span>
+                            <span class="text-gray-500 text-sm ml-auto">June 22, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">The Role of Policy in Addressing India's Food Security Challenges</h3>
+                        <p class="text-gray-600 mb-4">Analyzing recent policy changes and their impact on hunger reduction efforts nationwide...</p>
+                        <a href="#" class="text-primary font-medium hover:underline flex items-center">
+                            Read Full Story
+                            <div class="w-5 h-5 flex items-center justify-center ml-1">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+<script>
+                // Blog tabs
+            const blogTabButtons = document.querySelectorAll('.blog-tab-button');
+            const blogTabContents = document.querySelectorAll('.blog-tab-content');
+            
+            blogTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.getAttribute('data-tab');
+                    
+                    blogTabButtons.forEach(btn => btn.classList.remove('active'));
+                    blogTabContents.forEach(content => content.classList.remove('active'));
+                    
+                    button.classList.add('active');
+                    document.getElementById(`${tab}-tab`).classList.add('active');
+                });
+            });
+        
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeEls = document.querySelectorAll('.fade-in');
+    function checkFadeIn() {
+        fadeEls.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                el.classList.add('visible');
+            }
+        });
+    }
+    window.addEventListener('scroll', checkFadeIn);
+    checkFadeIn();
+});
+</script>
+</body>
+</html>
